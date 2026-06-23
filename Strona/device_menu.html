@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Menu Urządzenia</title>
+    <style>
+        table {
+            width: 50%; /* Tabela może być węższa dla pojedynczego urządzenia */
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            width: 30%;
+        }
+        .actions {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px dashed #666;
+            display: inline-block;
+        }
+        .btn {
+            padding: 10px 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Urządzenie: {{ device.model }}</h1>
+
+    <table>
+        <tr>
+            <th>ID Urządzenia</th>
+            <td>{{ device.id }}</td>
+        </tr>
+        <tr>
+            <th>Model</th>
+            <td>{{ device.model }}</td>
+        </tr>
+        <tr>
+            <th>Status</th>
+            <td>{{ "Gotowy" if not device.start_pomiaru else "W trakcie pracy" }}</td>
+        </tr>
+    </table>
+
+    <div class="actions">
+        <h3>Wybierz operację:</h3>
+        
+        <a href="/flow/device/{{ device.id }}/new_pomiar">
+            <button class="btn" type="button">➕ Nowy pomiar</button>
+        </a>
+
+        <a href="/flow/device/{{ device.id }}/pomiary">
+            <button class="btn" type="button">📊 Lista pomiarów</button>
+        </a>
+    </div>
+
+    <br><br>
+    <hr>
+    <a href="/flow/user/{{ device.user_id }}">
+        <button type="button">Powrót do listy urządzeń</button>
+    </a>
+    <a href="/">
+        <button type="button">Home</button>
+    </a>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista pomiarów</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        /* Usuwamy podkreślenia linków (rozwiązanie problemu z "_" między buttonami) */
+        a {
+            text-decoration: none;
+        }
+        .btn {
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pomiary dla urządzenia: {{ device.model }}</h1>
+    <p>Device ID: {{ device.id }}</p>
+
+    {% if not pomiary %}
+        <p>Brak pomiarów dla tego urządzenia.</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Pomiaru</th>
+                    <th>Wartość</th>
+                    <th>Zakres (Start - Koniec)</th>
+                    <th>Data utworzenia</th>
+                    <th>Akcja</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in pomiary %}
+                <tr>
+                    <td>{{ p.id }}</td>
+                    <td><strong>{{ p.value }}</strong></td>
+                    <td>{{ p.zakres_start }} - {{ p.zakres_koniec }}</td>
+                    <td>{{ p.created_at }}</td>
+                    <td>
+                        <a href="/flow/pomiar/{{ p.id }}">
+                            <button class="btn" type="button">Szczegóły</button>
+                        </a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <br><br>
+    <hr>
+    <a href="/flow/device/{{ device.id }}">
+        <button type="button">Powrót do menu urządzenia</button>
+    </a>
+    <a href="/">
+        <button type="button">Home</button>
+    </a>
+</body>
+</html>

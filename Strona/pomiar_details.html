@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Szczegóły pomiaru</title>
+    <style>
+        table {
+            width: 60%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            width: 30%;
+        }
+        a {
+            text-decoration: none; /* Pozbywamy się kresek między przyciskami */
+        }
+        .raw-data-box {
+            margin-top: 25px;
+            padding: 15px;
+            border: 1px solid #000;
+            display: inline-block;
+            background-color: #fff9e6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Szczegóły pomiaru #{{ pomiar.id }}</h1>
+
+    <table>
+        <tr>
+            <th>ID Pomiaru</th>
+            <td>{{ pomiar.id }}</td>
+        </tr>
+        <tr>
+            <th>Wartość (Value)</th>
+            <td><strong>{{ pomiar.value }}</strong></td>
+        </tr>
+        <tr>
+            <th>Zakres</th>
+            <td>Od {{ pomiar.zakres_start }} do {{ pomiar.zakres_koniec }}</td>
+        </tr>
+        <tr>
+            <th>Data wykonania</th>
+            <td>{{ pomiar.created_at }}</td>
+        </tr>
+        <tr>
+            <th>Przypisane urządzenie</th>
+            <td>ID: {{ pomiar.device_id }}</td>
+        </tr>
+    </table>
+
+    <div class="raw-data-box">
+        <strong>Analiza danych:</strong><br><br>
+        <a href="/flow/pomiar/{{ pomiar.id }}/mes">
+            <button type="button" style="padding: 10px;">🔍 Zobacz surowe dane (MES)</button>
+        </a>
+    </div>
+
+    <br><br>
+    <hr>
+    <a href="/flow/device/{{ pomiar.device_id }}/pomiary">
+        <button type="button">Powrót do listy pomiarów</button>
+    </a>
+    <a href="/">
+        <button type="button">Home</button>
+    </a>
+</body>
+</html>

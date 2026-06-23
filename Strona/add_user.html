@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj Użytkownika</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; padding-top: 50px; background-color: #f4f4f9; }
+        .box { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 300px; text-align: center; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 1px solid #ddd; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; border-radius: 8px; border: none; background: #333; color: white; cursor: pointer; font-weight: bold; }
+        button:hover { background: #555; }
+        .back { display: block; margin-top: 15px; color: #777; text-decoration: none; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h2>Nowy Użytkownik</h2>
+        <form method="POST">
+            <input type="text" name="name" placeholder="Wpisz imię..." required>
+            <button type="submit">Zapisz w bazie</button>
+        </form>
+        <a href="/users" class="back">Anuluj i wróć</a>
+    </div>
+</body>
+</html>

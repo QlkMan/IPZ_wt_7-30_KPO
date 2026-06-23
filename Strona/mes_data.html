@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Surowe dane MES</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none; /* Brak kresek między przyciskami */
+        }
+        .info-header {
+            background-color: #eef;
+            padding: 10px;
+            border-left: 5px solid #336;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Surowe dane MES (Analiza)</h1>
+    
+    <div class="info-header">
+        <strong>Pomiar ID:</strong> {{ pomiar.id }} | 
+        <strong>Główna wartość:</strong> {{ pomiar.value }}
+    </div>
+
+    {% if not mes_list %}
+        <p>Brak surowych danych MES dla tego pomiaru.</p>
+    {% else %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Wartość (Value)</th>
+                    <th>Kąt (Angle)</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in mes_list %}
+                <tr>
+                    <td>{{ m.id }}</td>
+                    <td>{{ m.value }}</td>
+                    <td>{{ m.angle }}°</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <br><br>
+    <hr>
+    <a href="/flow/pomiar/{{ pomiar.id }}">
+        <button type="button">Powrót do szczegółów pomiaru</button>
+    </a>
+    <a href="/">
+        <button type="button">Home</button>
+    </a>
+</body>
+</html>
